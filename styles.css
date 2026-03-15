@@ -1,0 +1,285 @@
+:root {
+    --pri: #6367FF;
+    --sec: #8494FF;
+    --ter1: #b3a3ff;
+    --ter2: #FFDBFD;
+    --ter3: #fa88f4;
+}
+
+@font-face {
+    font-family: bold;
+    src: url(./bold.ttf);
+}
+
+@font-face {
+    font-family: regular;
+    src: url(./regular.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.main {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background-color: var(--ter1);
+    font-family: bold;
+}
+
+.main #navi {
+    background-color: antiquewhite;
+    height: 250px;
+    border-radius: 20px;
+}
+
+#allelem {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-evenly;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+#allelem h2 {
+    color: white;
+    -webkit-text-stroke: 0.5px black;
+    font-size: 30px;
+}
+
+.elem {
+    background-color: var(--ter2);
+    width: 300px;
+    height: 350px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.elem:active {
+    scale: 0.97;
+}
+
+.elem h2 {
+    bottom: 5%;
+    right: 5%;
+    position: absolute;
+    font-size: 30px;
+}
+
+.elem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.fullelem {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--ter1);
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+}
+
+.fullelem .clse {
+    position: absolute;
+    left: 92%;
+    top: 20px;
+    background-color: red;
+    border-radius: 10px;
+    padding: 12px 25px;
+    border: none;
+    color: whitesmoke;
+}
+
+.fullelem .clse:active {
+    scale: 0.95;
+}
+
+.todo-page {
+    display: none;
+    padding: 20px;
+}
+
+.todo-page h1 {
+    color: black;
+    font-size: 50px;
+}
+
+.todo-page .taskcontainer {
+    margin-top: 25px;
+    width: 100%;
+    height: 80%;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.todo-page .taskcontainer .taskadd {
+    width: 40%;
+    height: 100%;
+    background-color: var(--pri);
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 10px;
+
+}
+
+.todo-page .taskcontainer .taskadd form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px;
+    color: black;
+}
+
+.todo-page .taskcontainer .taskadd form input {
+    padding: 10px 20px;
+    width: 100%;
+    font-size: 20px;
+    background-color: var(--ter2);
+    border-radius: 5px;
+    border: none;
+    font-weight: 700;
+    outline: none;
+}
+
+.todo-page .taskcontainer .taskadd form textarea {
+    padding: 10px 20px;
+    margin-top: 20px;
+    width: 100%;
+    height: 320px;
+    font-size: 20px;
+    background-color: var(--ter2);
+    border-radius: 5px;
+    border: none;
+    font-weight: 700;
+    outline: none;
+}
+
+.todo-page .taskcontainer .taskadd form button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    width: 100%;
+    font-size: 10px;
+    background-color: var(--ter3);
+    font-size: 15px;
+    border-radius: 5px;
+    font-weight: 700;
+    outline: none;
+    border: none;
+}
+
+.todo-page .taskcontainer .tasklist {
+    width: 70%;
+    height: 100%;
+    background-color: var(--pri);
+    border-radius: 10px;
+    padding: 20px;
+    overflow: auto;
+}
+
+.todo-page .taskcontainer .tasklist .tasks{
+    padding: 10px;
+    width: 100%;
+    height: 75px;
+    background-color: var(--ter2);
+    border-radius: 5px;
+    margin-bottom: 8px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* padding: 10px;
+    width: 100%;
+    height: 75px;
+    background-color: var(--ter2);
+    border-radius: 5px;
+    margin-bottom: 8px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px; */
+    
+}
+
+.todo-page .taskcontainer .tasklist .tasks h3{
+    font-size: 25px;
+}
+
+.todo-page .taskcontainer .tasklist .tasks button{
+    padding: 15px 20px;
+    width: 200px;
+    position: absolute;
+    right: 4%;
+    color: whitesmoke;
+    background-color: rgb(6, 208, 6);
+    border-radius: 10px;
+    border: none;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.todo-page .taskcontainer .tasklist .tasks button:active{
+    scale: 0.95;
+}
+
+#tick{
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 20px;      
+    width: 100%;
+    color: whitesmoke;
+}
+
+#tick input{
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+
+#tick label{
+    font-size: 20px;
+    margin: 0; 
+}
+
+.todo-page .taskcontainer .tasklist .tasks .imp{
+    color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#imp{
+    width: 40px;
+    background-color: red;
+    border-radius:5px;
+    margin-left: 8px;
+    margin-bottom: 41px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+#imp.false{
+    opacity: 0;
+}
+
+#imp.true{
+    opacity: 1;
+}
