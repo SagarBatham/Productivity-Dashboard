@@ -193,7 +193,7 @@
     overflow: auto;
 }
 
-.todo-page .taskcontainer .tasklist .tasks{
+.todo-page .taskcontainer .tasklist .tasks {
     padding: 10px;
     width: 100%;
     height: 75px;
@@ -214,14 +214,14 @@
     display: flex;
     align-items: center;
     gap: 10px; */
-    
+
 }
 
-.todo-page .taskcontainer .tasklist .tasks h3{
+.todo-page .taskcontainer .tasklist .tasks h3 {
     font-size: 25px;
 }
 
-.todo-page .taskcontainer .tasklist .tasks button{
+.todo-page .taskcontainer .tasklist .tasks button {
     padding: 15px 20px;
     width: 200px;
     position: absolute;
@@ -234,40 +234,41 @@
     font-weight: 700;
 }
 
-.todo-page .taskcontainer .tasklist .tasks button:active{
+.todo-page .taskcontainer .tasklist .tasks button:active {
     scale: 0.95;
 }
 
-#tick{
+#tick {
     margin-top: 5px;
     display: flex;
     align-items: center;
-    gap: 20px;      
+    gap: 20px;
     width: 100%;
     color: whitesmoke;
 }
 
-#tick input{
+#tick input {
     width: 20px;
     height: 20px;
     margin: 0;
 }
 
-#tick label{
+#tick label {
     font-size: 20px;
-    margin: 0; 
+    margin: 0;
 }
 
-.todo-page .taskcontainer .tasklist .tasks .imp{
+.todo-page .taskcontainer .tasklist .tasks .imp {
     color: whitesmoke;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-#imp{
+
+#imp {
     width: 40px;
     background-color: red;
-    border-radius:5px;
+    border-radius: 5px;
     margin-left: 8px;
     margin-bottom: 41px;
     display: flex;
@@ -276,10 +277,65 @@
     color: white;
 }
 
-#imp.false{
+#imp.false {
     opacity: 0;
 }
 
-#imp.true{
+#imp.true {
     opacity: 1;
 }
+
+
+.dailyplanner-page {
+    display: none;
+    padding: 15px;
+}
+
+.dailyplanner-page h1 {
+    color: black;
+    font-size: 50px;
+}
+
+.dailyplanner-page .day-planner {
+    padding: 10px;
+    background-color: var(--pri);
+    height: 85%;
+    margin-top: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    overflow: auto;
+}
+
+.dailyplanner-page .day-planner .day-planner-time {
+    /* padding: 10px; */
+    width: 49%;
+    height: 60px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.dailyplanner-page .day-planner .day-planner-time p {
+    font-size: 15px;
+    position: absolute;
+    top: 10%;
+    left: 1%;
+    font-size: 16px;
+}
+
+.dailyplanner-page .day-planner .day-planner-time input{
+    margin-top: 10px;
+    background-color: var(--ter1);
+    padding: 10px 20px;
+    width: 100%;
+    font-size: 25px;
+    border-radius: 5px;
+    outline: none;
+    padding-top: 20px;
+    border: none;
+}
+

@@ -1,77 +1,142 @@
-var form = document.querySelector(".todo-page .taskcontainer .taskadd form ");
-var txtinput = document.querySelector(".todo-page .taskcontainer .taskadd form input");
-var txtarea = document.querySelector(".todo-page .taskcontainer .taskadd form textarea");
-var checkbx = document.querySelector("#tick input");
-let alltask = document.querySelector(".todo-page .taskcontainer .tasklist");
-var imptask = document.querySelector(".imp h4");
-var subButton=document.querySelector(".todo-page .taskcontainer .tasklist .tasks button");
-subButton.addEventListener("click",function(){
-    console.log("Helloo");
-    
-})
+
+function toDoList() {
+    var form = document.querySelector(".todo-page .taskcontainer .taskadd form ");
+    var txtinput = document.querySelector(".todo-page .taskcontainer .taskadd form input");
+    var txtarea = document.querySelector(".todo-page .taskcontainer .taskadd form textarea");
+    var checkbx = document.querySelector("#tick input");
+    let alltask = document.querySelector(".todo-page .taskcontainer .tasklist");
+    var imptask = document.querySelector(".imp h4");
 
 
-//Basic Opening Features
-function openFeatures() {
-    let allelem = document.querySelectorAll(".elem");
-    let fullelems = document.querySelectorAll(".fullelem");
 
-    allelem.forEach(function (elem) {
-        elem.addEventListener("click", function () {
-            fullelems[elem.id].style.display = "block";
+
+    //Basic Opening Features
+    function openFeatures() {
+        let allelem = document.querySelectorAll(".elem");
+        let fullelems = document.querySelectorAll(".fullelem");
+
+        allelem.forEach(function (elem) {
+            elem.addEventListener("click", function () {
+                fullelems[elem.id].style.display = "block";
+                localStorage.setItem("activePage", elem.id);
+
+            });
         });
-    });
 
-    let btnelem = document.querySelectorAll(".clse");
-    btnelem.forEach(function (button) {
-        button.addEventListener("click", function () {
-            allelem.forEach(function (elem) {
-                fullelems[elem.id].style.display = "none";
+        let savedPage = localStorage.getItem("activePage");
+
+        if (savedPage != null) {
+            let fullelems = document.querySelectorAll(".fullelem");
+            fullelems[savedPage].style.display = "block";
+        }
+
+        let btnelem = document.querySelectorAll(".clse");
+        btnelem.forEach(function (button) {
+            button.addEventListener("click", function () {
+                allelem.forEach(function (elem) {
+                    fullelems[elem.id].style.display = "none";
+                })
+                localStorage.removeItem("activePage");
             })
         })
-    })
-}
-openFeatures();
-//Render Tasks after Submitting in To-Do List
+    }
+    openFeatures();
+    //Render Tasks after Submitting in To-Do List
 
 
-var currtask = [];
-if (localStorage.getItem("currtask")) {
-    currtask = JSON.parse(localStorage.getItem("currtask"));
-} else {
-    localStorage.setItem("currtask", JSON.stringify(currtask));
+    var currtask = [];
+    if (localStorage.getItem("currtask")) {
+        currtask = JSON.parse(localStorage.getItem("currtask"));
+    } else {
+        localStorage.setItem("currtask", JSON.stringify(currtask));
 
-}
+    }
 
-function renderTask() {
-    var taskadd = '';
-    currtask.forEach(function (ele) {
-        taskadd += `<div class="tasks">
+    function renderTask() {
+        var taskadd = '';
+        currtask.forEach(function (ele, idx) {
+            taskadd += `<div class="tasks">
                         <h3>${ele.task}</h3>
                         <div id="imp" class="${ele.impo}">
                             Imp
                         </div>
-                        <button>Mark as Completed</button>
+                        <button id="${idx}">Mark as Completed</button>
                     </div>`
-    })
-    alltask.innerHTML = taskadd;
-    txtinput.value = '';
-    txtarea.value = '';
-    checkbx.checked = false;
-}
-renderTask();
+        })
+        alltask.innerHTML = taskadd;
+        txtinput.value = '';
+        txtarea.value = '';
+        checkbx.checked = false;
 
-
-form.addEventListener("submit", function (evt) {
-    evt.preventDefault();
-    if(txtinput.value.trim()===""){
-        alert("Enter a Valid Task")
-        return;
+        var btnSub = document.querySelectorAll(".tasks button");
+        btnSub.forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                currtask.splice(btn.id, 1);
+                localStorage.setItem("currtask", JSON.stringify(currtask));
+                renderTask();
+            })
+        })
     }
-    currtask.push({ task: txtinput.value, details: txtarea.value, impo: checkbx.checked });
-    localStorage.setItem("currtask", JSON.stringify(currtask));
     renderTask();
+
+
+
+    form.addEventListener("submit", function (evt) {
+        evt.preventDefault();
+        if (txtinput.value.trim() === "") {
+            alert("Enter a Valid Task")
+            return;
+        }
+        currtask.push({ task: txtinput.value, details: txtarea.value, impo: checkbx.checked });
+        localStorage.setItem("currtask", JSON.stringify(currtask));
+        renderTask();
+    })
+
+}
+toDoList();
+var timeTable=document.querySelector(".day-planner");
+var timeEver=Array.from({length:18},function(ele,idx){
+    return `${6+idx}:00 - ${7+idx}:00 `
 })
+
+var dailyTask={};
+
+
+
+var totalDaytime='';
+
+var refTask=JSON.parse(localStorage.getItem("dailyTask")) || {}
+console.log(refTask);
+
+timeEver.forEach(function(ele,idx){
+    totalDaytime=totalDaytime+`<div class="day-planner-time">
+                    <p>${ele}</p>
+                    <input type="text" placeholder="..." id="${idx}" value="${dailyTask[idx].value}">
+                </div>`
+})
+
+timeTable.innerHTML=totalDaytime;
+
+
+var timeDetail=document.querySelectorAll(".dailyplanner-page .day-planner .day-planner-time input");
+
+timeDetail.forEach(function(ele){
+    ele.addEventListener("input",function(){
+        dailyTask[ele.id]=ele.value;
+        
+        localStorage.setItem("dailyTask",JSON.stringify(dailyTask))
+    })
+})
+
+
+
+
+
+
+
+
+
+
 
 
 
