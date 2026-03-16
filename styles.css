@@ -322,6 +322,7 @@
 .dailyplanner-page .day-planner .day-planner-time p {
     font-size: 15px;
     position: absolute;
+    color: var(--pri);
     top: 10%;
     left: 1%;
     font-size: 16px;

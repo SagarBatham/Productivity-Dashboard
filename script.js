@@ -105,13 +105,13 @@ var dailyTask={};
 
 var totalDaytime='';
 
-var refTask=JSON.parse(localStorage.getItem("dailyTask")) || {}
+var refTask=JSON.parse(localStorage.getItem("dailyTask")) || {};
 console.log(refTask);
 
 timeEver.forEach(function(ele,idx){
     totalDaytime=totalDaytime+`<div class="day-planner-time">
                     <p>${ele}</p>
-                    <input type="text" placeholder="..." id="${idx}" value="${dailyTask[idx].value}">
+                    <input type="text" placeholder="..." id="${idx}" value="${refTask[idx] || ""}">
                 </div>`
 })
 
