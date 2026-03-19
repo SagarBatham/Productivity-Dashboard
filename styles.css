@@ -340,3 +340,26 @@
     border: none;
 }
 
+.motivation-page{
+    display: block;
+    padding: 15px;
+}
+
+.motivation-page h1{
+    font-size: 70px;
+    margin-bottom: 10px;
+}
+
+.motivation-page .mot-Contain{
+    margin-left: 150px;
+    width: 80%;
+    height: 500px;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.motivation-page .mot-Contain .motiv{
+    width: 60%;
+    background-color: yellow;
+}
