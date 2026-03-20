@@ -94,40 +94,64 @@ function toDoList() {
 
 }
 toDoList();
-var timeTable=document.querySelector(".day-planner");
-var timeEver=Array.from({length:18},function(ele,idx){
-    return `${6+idx}:00 - ${7+idx}:00 `
-})
-
-var dailyTask={};
 
 
+function dailyPlanner() {
+    var timeTable = document.querySelector(".day-planner");
+    var timeEver = Array.from({ length: 18 }, function (ele, idx) {
+        return `${6 + idx}:00 - ${7 + idx}:00 `
+    })
 
-var totalDaytime='';
+    var dailyTask = {};
 
-var refTask=JSON.parse(localStorage.getItem("dailyTask")) || {};
-console.log(refTask);
 
-timeEver.forEach(function(ele,idx){
-    totalDaytime=totalDaytime+`<div class="day-planner-time">
+
+    var totalDaytime = '';
+
+    var refTask = JSON.parse(localStorage.getItem("dailyTask")) || {};
+
+    timeEver.forEach(function (ele, idx) {
+        totalDaytime = totalDaytime + `<div class="day-planner-time">
                     <p>${ele}</p>
                     <input type="text" placeholder="..." id="${idx}" value="${refTask[idx] || ""}">
                 </div>`
-})
-
-timeTable.innerHTML=totalDaytime;
-
-
-var timeDetail=document.querySelectorAll(".dailyplanner-page .day-planner .day-planner-time input");
-
-timeDetail.forEach(function(ele){
-    ele.addEventListener("input",function(){
-        dailyTask[ele.id]=ele.value;
-        
-        localStorage.setItem("dailyTask",JSON.stringify(dailyTask))
     })
-})
 
+    timeTable.innerHTML = totalDaytime;
+
+
+    var timeDetail = document.querySelectorAll(".dailyplanner-page .day-planner .day-planner-time input");
+
+    timeDetail.forEach(function (ele) {
+        ele.addEventListener("input", function () {
+            dailyTask[ele.id] = ele.value;
+
+            localStorage.setItem("dailyTask", JSON.stringify(dailyTask))
+        })
+    })
+}
+dailyPlanner()
+
+
+function motivation_page(){
+    var btnClick=document.querySelector(".clse")
+    var sum='';
+    var quotes_add=document.querySelector(".motivation-page .mot-Contain .motiv")
+    fetch("https://api.quotable.io/random")
+        .then(function (response) {
+            return response.json();   
+        })
+        .then(function (data) {
+            sum=`<h3 class="heading">Today Quotes</h3>
+                <p>"${data.content}"</p>
+                <h3 class="auth">${data.author}</h3>`
+            quotes_add.innerHTML=sum;
+        });
+
+
+    
+}
+motivation_page();
 
 
 
