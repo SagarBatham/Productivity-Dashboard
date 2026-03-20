@@ -134,7 +134,13 @@ dailyPlanner()
 
 
 function motivation_page(){
-    var btnClick=document.querySelector(".clse")
+    var btnClick=document.querySelector(".motivation-page .clse")
+    if(btnClick){
+        btnClick.addEventListener("click",function(){
+        motivation_page()
+    })
+    }
+    
     var sum='';
     var quotes_add=document.querySelector(".motivation-page .mot-Contain .motiv")
     fetch("https://api.quotable.io/random")
@@ -144,7 +150,7 @@ function motivation_page(){
         .then(function (data) {
             sum=`<h3 class="heading">Today Quotes</h3>
                 <p>"${data.content}"</p>
-                <h3 class="auth">${data.author}</h3>`
+                <h3 class="auth">-${data.author}</h3>`
             quotes_add.innerHTML=sum;
         });
 

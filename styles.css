@@ -341,14 +341,14 @@
 }
 
 .motivation-page {
-    display: block;
+    display: none;
     padding: 15px;
 }
 
 .motivation-page h1 {
-    font-size: 70px;
+    font-size: 60px;
     margin-bottom: 40px;
-    margin-left: 20px;
+    z-index: 3;
 }
 
 
@@ -367,8 +367,8 @@
     content: "";
     position: absolute;
     inset: 20px;
-    background-color: var(--ter3);
-    filter: blur(90px);
+    background-color: rgb(217, 236, 46);
+    filter: blur(150px);
     z-index: 1;
 }
 
@@ -379,14 +379,13 @@
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 25px;
-    background-color: rgb(236, 77, 233);
+    background-color: var(--pri);
     border-radius: 20px;
-    z-index: 8;
+    z-index: 2;
 }
 
 .motivation-page .mot-Contain .motiv .heading {
     font-size: 30px;
-    margin-bottom: 10px;
     background-color: rgb(247, 158, 4);
     display: inline;
     border-radius: 8px;
@@ -395,7 +394,7 @@
 }
 
 .motivation-page .mot-Contain .motiv p {
-    margin-top: 50px;
+    margin-top: 15px;
     padding: 10px 5px;
     font-size: 25px;
     color: whitesmoke;
