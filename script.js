@@ -150,7 +150,9 @@ function motivation_page(){
         .then(function (data) {
             sum=`<h3 class="heading">Today Quotes</h3>
                 <p>"${data.content}"</p>
-                <h3 class="auth">-${data.author}</h3>`
+                <h3 class="auth">-${data.author}</h3>
+                <div class="icon">
+                <img src="img/quote-icon.png" alt=""></img>`
             quotes_add.innerHTML=sum;
         });
 

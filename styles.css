@@ -354,7 +354,7 @@
 
 
 .motivation-page .mot-Contain {
-    width: 30%;
+    /* width: 30%; */
     height: 600px;
     position: absolute;
     top: 50%;
@@ -373,7 +373,7 @@
 }
 
 .motivation-page .mot-Contain .motiv {
-    height: 400px;
+    height: 300px;
     position: relative;
     top: 50%;
     left: 50%;
@@ -394,7 +394,7 @@
 }
 
 .motivation-page .mot-Contain .motiv p {
-    margin-top: 15px;
+    margin-top: 25px;
     padding: 10px 5px;
     font-size: 25px;
     color: whitesmoke;
@@ -413,4 +413,24 @@
     right: 10px;
     color: black;
 
+}
+
+.motivation-page .mot-Contain .motiv .icon img{
+    width: 40px;
+    position: absolute;
+    top: 5%;
+    right: 10%;
+}
+
+.marked{
+    font-size: 21px;
+    text-align: center;
+    color: whitesmoke;
+    padding: 5px;
+    width: 160px;
+    position: absolute;
+    bottom: 2%;
+    right: 5%;
+    background-color: #6367FF;
+    border-radius: 5px;
 }
