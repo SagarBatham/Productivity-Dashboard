@@ -133,33 +133,85 @@ function dailyPlanner() {
 dailyPlanner()
 
 
-function motivation_page(){
-    var btnClick=document.querySelector(".motivation-page .clse")
-    if(btnClick){
-        btnClick.addEventListener("click",function(){
-        motivation_page()
-    })
+function motivation_page() {
+    var btnClick = document.querySelector(".motivation-page .clse")
+    if (btnClick) {
+        btnClick.addEventListener("click", function () {
+            motivation_page()
+        })
     }
-    
-    var sum='';
-    var quotes_add=document.querySelector(".motivation-page .mot-Contain .motiv")
+
+    var sum = '';
+    var quotes_add = document.querySelector(".motivation-page .mot-Contain .motiv")
     fetch("https://api.quotable.io/random")
         .then(function (response) {
-            return response.json();   
+            return response.json();
         })
         .then(function (data) {
-            sum=`<h3 class="heading">Today Quotes</h3>
+            sum = `<h3 class="heading">Today Quotes</h3>
                 <p>"${data.content}"</p>
                 <h3 class="auth">-${data.author}</h3>
                 <div class="icon">
                 <img src="img/quote-icon.png" alt=""></img>`
-            quotes_add.innerHTML=sum;
+            quotes_add.innerHTML = sum;
         });
 
 
-    
+
 }
 motivation_page();
+
+
+var timer = document.querySelector(".pomodoro-page h3");
+var totalSeconds = 25 * 60;
+
+var startbtn = document.querySelector(".start-button");
+var pausebtn = document.querySelector(".pause-button");
+var resetbtn = document.querySelector(".reset-button");
+
+var timeInterval = null;
+
+function updateTime() {
+    var minutes = Math.floor(totalSeconds / 60);
+    var seconds = totalSeconds % 60;
+
+    timer.innerHTML = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+}
+
+function start_timer() {
+    if (timeInterval) return; 
+
+    timeInterval = setInterval(() => {
+        if (totalSeconds <= 0) {
+            clearInterval(timeInterval);
+            timeInterval = null;
+            return;
+        }
+
+        totalSeconds--;
+        updateTime();
+    }, 1000);
+}
+
+function pause_timer() {
+    clearInterval(timeInterval);
+    timeInterval = null;
+}
+
+function reset_timer() {
+    clearInterval(timeInterval);
+    timeInterval = null;
+    totalSeconds = 25 * 60;
+    updateTime();
+}
+
+startbtn.addEventListener("click", start_timer);
+pausebtn.addEventListener("click", pause_timer);
+resetbtn.addEventListener("click", reset_timer);
+
+updateTime();
+
+
 
 
 
