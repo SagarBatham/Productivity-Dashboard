@@ -162,14 +162,16 @@ function motivation_page() {
 motivation_page();
 
 
-var timer = document.querySelector(".pomodoro-page h3");
+var timer = document.querySelector(".pomodoro-page .time");
 var totalSeconds = 25 * 60;
 
 var startbtn = document.querySelector(".start-button");
 var pausebtn = document.querySelector(".pause-button");
 var resetbtn = document.querySelector(".reset-button");
+var session = document.querySelector(".pomodoro-page .timer .session")
 
 var timeInterval = null;
+var isWorkSession=true;
 
 function updateTime() {
     var minutes = Math.floor(totalSeconds / 60);
@@ -179,18 +181,50 @@ function updateTime() {
 }
 
 function start_timer() {
-    if (timeInterval) return; 
+    if (timeInterval) return;
 
-    timeInterval = setInterval(() => {
-        if (totalSeconds <= 0) {
-            clearInterval(timeInterval);
-            timeInterval = null;
-            return;
-        }
+    if (isWorkSession) {
+        totalSeconds = 25 * 60;
 
-        totalSeconds--;
-        updateTime();
-    }, 1000);
+        timeInterval = setInterval(() => {
+            if (totalSeconds > 0) {
+                totalSeconds--;
+                updateTime();
+
+            } else {
+                isWorkSession = false;
+                totalSeconds = 5 * 60; 
+                updateTime();
+                timer.innerHTML="05:00"      
+                session.innerHTML = "Let's Take a Break"; 
+                session.style.backgroundColor = "#ee0c0c";
+
+                clearInterval(timeInterval);
+                timeInterval = null; 
+            }
+
+        }, 1000); 
+    } else {
+        totalSeconds = 5 * 60;
+
+        timeInterval = setInterval(() => {
+            if (totalSeconds > 0) {
+                totalSeconds--;
+                updateTime();
+
+            } else {
+                isWorkSession = true;
+                totalSeconds = 25 * 60; 
+                updateTime();           
+                session.innerHTML = "Work Session";
+                session.style.backgroundColor = "rgb(16, 236, 0)";
+
+                clearInterval(timeInterval);
+                timeInterval = null; 
+            }
+
+        }, 1000); 
+    }
 }
 
 function pause_timer() {
