@@ -162,7 +162,8 @@ function motivation_page() {
 motivation_page();
 
 
-var timer = document.querySelector(".pomodoro-page .time");
+function pomodoro_page(){
+    var timer = document.querySelector(".pomodoro-page .time");
 var totalSeconds = 25 * 60;
 
 var startbtn = document.querySelector(".start-button");
@@ -244,8 +245,36 @@ pausebtn.addEventListener("click", pause_timer);
 resetbtn.addEventListener("click", reset_timer);
 
 updateTime();
+}
 
+pomodoro_page()
 
+var dateSet=document.querySelector(".header1 h1")
+var apiKey="8a94a1ac092145a290f133905262203";
+var city="Noida"
+async function  weather_API(){
+    var response= await fetch(`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`)
+    
+    var data=await response.json();    
+}
+weather_API()
+
+var weekDay=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+var date=null;
+function get_date(){
+    setInterval(() => {
+         date=new Date();
+    dateSet.innerHTML=`${weekDay[date.getDay()]}, ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} pm`
+    }, 1000);
+       
+    
+    
+    console.log();
+    console.log();
+        console.log();
+
+}
+get_date()
 
 
 
