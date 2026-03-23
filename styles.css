@@ -1,10 +1,37 @@
 :root {
-    --pri: #6367FF;
-    --sec: #8494FF;
-    --ter1: #b3a3ff;
-    --ter2: #FFDBFD;
-    --ter3: #fa88f4;
-    --m:rgb(11, 63, 84);
+    --pri: #4F46E5;
+    --sec: #6366F1;
+
+    --m: #F5F7FB;
+    --ter1: #EEF2FF;
+    --ter2: #FFFFFF;
+    --ter3: #22C55E;
+
+
+    --text-main: #1F2937;
+}
+
+
+body {
+    color: var(--text-main);
+}
+
+.navi,
+.dash,
+.header1,
+.header2,
+.todo-page h1,
+.dailyplanner-page h1,
+.motivation-page h1,
+.pomodoro-page h1 {
+    color: var(--text-main);
+}
+
+
+.todo-page .taskcontainer .tasklist .tasks h3,
+.goal-item p,
+.motivation-page .motiv p {
+    color: var(--text-main);
 }
 
 @font-face {
@@ -26,7 +53,7 @@
 
 .main {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     padding: 10px;
     background-color: var(--m);
     font-family: bold;

@@ -250,56 +250,56 @@ function pomodoro_page() {
 pomodoro_page();
 
 
-function main_page(){
-var dateSet = document.querySelector(".header1 h1");
-var dateMonth=document.querySelector(".header1 h2");
-var temp=document.querySelector(".header2 h2");
-var Cond=document.querySelector(".header2 h4");
-var other=document.querySelectorAll(".header2 h3")
+function main_page() {
+    var dateSet = document.querySelector(".header1 h1");
+    var dateMonth = document.querySelector(".header1 h2");
+    var temp = document.querySelector(".header2 h2");
+    var Cond = document.querySelector(".header2 h4");
+    var other = document.querySelectorAll(".header2 h3")
 
 
-var apiKey = "8a94a1ac092145a290f133905262203";
-var city = "Noida"
-async function weather_API() {
-    var response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`)
-    var data = await response.json();
-    var currtemp=data.current.temp_c;
-    var currCond=data.current.condition.text
-    var currHeat=data.current.heatindex_c
-    var humid=data.current.humidity;
-    var windspeed=data.current.wind_kph
-    temp.innerHTML=`${currtemp} °C`
-    Cond.innerHTML=`${currCond}`
-    other[0].innerHTML=`HeatIndex: ${currHeat}`
-    other[1].innerHTML=`Humidity: ${humid}`
-    other[2].innerHTML=`Wind: ${windspeed} km/hr`
-}
+    var apiKey = "8a94a1ac092145a290f133905262203";
+    var city = "Noida"
+    async function weather_API() {
+        var response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`)
+        var data = await response.json();
+        var currtemp = data.current.temp_c;
+        var currCond = data.current.condition.text
+        var currHeat = data.current.heatindex_c
+        var humid = data.current.humidity;
+        var windspeed = data.current.wind_kph
+        temp.innerHTML = `${currtemp} °C`
+        Cond.innerHTML = `${currCond}`
+        other[0].innerHTML = `HeatIndex: ${currHeat}`
+        other[1].innerHTML = `Humidity: ${humid}`
+        other[2].innerHTML = `Wind: ${windspeed} km/hr`
+    }
 
-var months=["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-var weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-var date = null;
-function get_date() {
-    date=new Date();
-    let hours = date.getHours();
-    let ampm = hours >= 12 ? "PM" : "AM";
-    let currDate=date.getDate();
-    let currMonth=months[date.getMonth()];
-    let currYear=date.getFullYear();
-    
-    dateMonth.innerHTML=`${currDate} ${currMonth} ${currYear}`
-    
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    var date = null;
+    function get_date() {
+        date = new Date();
+        let hours = date.getHours();
+        let ampm = hours >= 12 ? "PM" : "AM";
+        let currDate = date.getDate();
+        let currMonth = months[date.getMonth()];
+        let currYear = date.getFullYear();
 
-    hours = hours % 12 || 12;
+        dateMonth.innerHTML = `${currDate} ${currMonth} ${currYear}`
 
-    let minutes = String(date.getMinutes()).padStart(2, "0");
-    let seconds = String(date.getSeconds()).padStart(2, "0");
 
-    dateSet.innerHTML = `${weekDay[date.getDay()]}, ${String(hours).padStart(2,"0")}:${minutes}:${seconds} ${ampm}`;
-}
-setInterval(()=>{
-    weather_API();
-    get_date();
-},1000)
+        hours = hours % 12 || 12;
+
+        let minutes = String(date.getMinutes()).padStart(2, "0");
+        let seconds = String(date.getSeconds()).padStart(2, "0");
+
+        dateSet.innerHTML = `${weekDay[date.getDay()]}, ${String(hours).padStart(2, "0")}:${minutes}:${seconds} ${ampm}`;
+    }
+    setInterval(() => {
+        weather_API();
+        get_date();
+    }, 1000)
 }
 
 main_page();
@@ -354,14 +354,37 @@ function dailyGoals() {
 
 dailyGoals();
 
+const themeBtn = document.querySelector(".dash i");
+
+let darkMode = false;
+
+themeBtn.addEventListener("click", () => {
+    darkMode = !darkMode;
+
+    if (darkMode) {
+        document.documentElement.style.setProperty("--m", "#0F172A");
+        document.documentElement.style.setProperty("--pri", "#1E293B");
+        document.documentElement.style.setProperty("--ter1", "#111827");
+        document.documentElement.style.setProperty("--ter2", "#1F2937");
+        document.documentElement.style.setProperty("--ter3", "#22C55E");
 
 
+        document.documentElement.style.setProperty("--text-main", "#FFFFFF");
 
+        themeBtn.classList.remove("ri-sun-line");
+        themeBtn.classList.add("ri-moon-line");
 
+    } else {
 
+        document.documentElement.style.setProperty("--m", "#F5F7FB");
+        document.documentElement.style.setProperty("--pri", "#4F46E5");
+        document.documentElement.style.setProperty("--ter1", "#EEF2FF");
+        document.documentElement.style.setProperty("--ter2", "#FFFFFF");
+        document.documentElement.style.setProperty("--ter3", "#22C55E");
 
+        document.documentElement.style.setProperty("--text-main", "#1F2937");
 
-
-
-
-
+        themeBtn.classList.remove("ri-moon-line");
+        themeBtn.classList.add("ri-sun-line");
+    }
+});
