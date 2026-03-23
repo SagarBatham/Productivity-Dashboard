@@ -130,7 +130,7 @@ function dailyPlanner() {
         })
     })
 }
-dailyPlanner()
+dailyPlanner();
 
 
 function motivation_page() {
@@ -162,122 +162,197 @@ function motivation_page() {
 motivation_page();
 
 
-function pomodoro_page(){
+function pomodoro_page() {
     var timer = document.querySelector(".pomodoro-page .time");
-var totalSeconds = 25 * 60;
+    var totalSeconds = 25 * 60;
 
-var startbtn = document.querySelector(".start-button");
-var pausebtn = document.querySelector(".pause-button");
-var resetbtn = document.querySelector(".reset-button");
-var session = document.querySelector(".pomodoro-page .timer .session")
+    var startbtn = document.querySelector(".start-button");
+    var pausebtn = document.querySelector(".pause-button");
+    var resetbtn = document.querySelector(".reset-button");
+    var session = document.querySelector(".pomodoro-page .timer .session")
 
-var timeInterval = null;
-var isWorkSession=true;
+    var timeInterval = null;
+    var isWorkSession = true;
 
-function updateTime() {
-    var minutes = Math.floor(totalSeconds / 60);
-    var seconds = totalSeconds % 60;
+    function updateTime() {
+        var minutes = Math.floor(totalSeconds / 60);
+        var seconds = totalSeconds % 60;
 
-    timer.innerHTML = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-}
-
-function start_timer() {
-    if (timeInterval) return;
-
-    if (isWorkSession) {
-        totalSeconds = 25 * 60;
-
-        timeInterval = setInterval(() => {
-            if (totalSeconds > 0) {
-                totalSeconds--;
-                updateTime();
-
-            } else {
-                isWorkSession = false;
-                totalSeconds = 5 * 60; 
-                updateTime();
-                timer.innerHTML="05:00"      
-                session.innerHTML = "Let's Take a Break"; 
-                session.style.backgroundColor = "#ee0c0c";
-
-                clearInterval(timeInterval);
-                timeInterval = null; 
-            }
-
-        }, 1000); 
-    } else {
-        totalSeconds = 5 * 60;
-
-        timeInterval = setInterval(() => {
-            if (totalSeconds > 0) {
-                totalSeconds--;
-                updateTime();
-
-            } else {
-                isWorkSession = true;
-                totalSeconds = 25 * 60; 
-                updateTime();           
-                session.innerHTML = "Work Session";
-                session.style.backgroundColor = "rgb(16, 236, 0)";
-
-                clearInterval(timeInterval);
-                timeInterval = null; 
-            }
-
-        }, 1000); 
+        timer.innerHTML = `${minutes}:${seconds.toString().padStart(2, '0')}`;
     }
-}
 
-function pause_timer() {
-    clearInterval(timeInterval);
-    timeInterval = null;
-}
+    function start_timer() {
+        if (timeInterval) return;
 
-function reset_timer() {
-    clearInterval(timeInterval);
-    timeInterval = null;
-    totalSeconds = 25 * 60;
+        if (isWorkSession) {
+            totalSeconds = 25 * 60;
+
+            timeInterval = setInterval(() => {
+                if (totalSeconds > 0) {
+                    totalSeconds--;
+                    updateTime();
+
+                } else {
+                    isWorkSession = false;
+                    totalSeconds = 5 * 60;
+                    updateTime();
+                    timer.innerHTML = "05:00"
+                    session.innerHTML = "Let's Take a Break";
+                    session.style.backgroundColor = "#ee0c0c";
+
+                    clearInterval(timeInterval);
+                    timeInterval = null;
+                }
+
+            }, 1000);
+        } else {
+            totalSeconds = 5 * 60;
+
+            timeInterval = setInterval(() => {
+                if (totalSeconds > 0) {
+                    totalSeconds--;
+                    updateTime();
+
+                } else {
+                    isWorkSession = true;
+                    totalSeconds = 25 * 60;
+                    updateTime();
+                    session.innerHTML = "Work Session";
+                    session.style.backgroundColor = "rgb(16, 236, 0)";
+
+                    clearInterval(timeInterval);
+                    timeInterval = null;
+                }
+
+            }, 1000);
+        }
+    }
+
+    function pause_timer() {
+        clearInterval(timeInterval);
+        timeInterval = null;
+    }
+
+    function reset_timer() {
+        clearInterval(timeInterval);
+        timeInterval = null;
+        totalSeconds = 25 * 60;
+        updateTime();
+    }
+
+    startbtn.addEventListener("click", start_timer);
+    pausebtn.addEventListener("click", pause_timer);
+    resetbtn.addEventListener("click", reset_timer);
+
     updateTime();
 }
 
-startbtn.addEventListener("click", start_timer);
-pausebtn.addEventListener("click", pause_timer);
-resetbtn.addEventListener("click", reset_timer);
+pomodoro_page();
 
-updateTime();
+
+function main_page(){
+var dateSet = document.querySelector(".header1 h1");
+var dateMonth=document.querySelector(".header1 h2");
+var temp=document.querySelector(".header2 h2");
+var Cond=document.querySelector(".header2 h4");
+var other=document.querySelectorAll(".header2 h3")
+
+
+var apiKey = "8a94a1ac092145a290f133905262203";
+var city = "Noida"
+async function weather_API() {
+    var response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`)
+    var data = await response.json();
+    var currtemp=data.current.temp_c;
+    var currCond=data.current.condition.text
+    var currHeat=data.current.heatindex_c
+    var humid=data.current.humidity;
+    var windspeed=data.current.wind_kph
+    temp.innerHTML=`${currtemp} °C`
+    Cond.innerHTML=`${currCond}`
+    other[0].innerHTML=`HeatIndex: ${currHeat}`
+    other[1].innerHTML=`Humidity: ${humid}`
+    other[2].innerHTML=`Wind: ${windspeed} km/hr`
 }
 
-pomodoro_page()
-
-var dateSet=document.querySelector(".header1 h1")
-var apiKey="8a94a1ac092145a290f133905262203";
-var city="Noida"
-async function  weather_API(){
-    var response= await fetch(`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`)
+var months=["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+var date = null;
+function get_date() {
+    date=new Date();
+    let hours = date.getHours();
+    let ampm = hours >= 12 ? "PM" : "AM";
+    let currDate=date.getDate();
+    let currMonth=months[date.getMonth()];
+    let currYear=date.getFullYear();
     
-    var data=await response.json();    
+    dateMonth.innerHTML=`${currDate} ${currMonth} ${currYear}`
+    
+
+    hours = hours % 12 || 12;
+
+    let minutes = String(date.getMinutes()).padStart(2, "0");
+    let seconds = String(date.getSeconds()).padStart(2, "0");
+
+    dateSet.innerHTML = `${weekDay[date.getDay()]}, ${String(hours).padStart(2,"0")}:${minutes}:${seconds} ${ampm}`;
 }
-weather_API()
-
-var weekDay=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
-var date=null;
-function get_date(){
-    setInterval(() => {
-         date=new Date();
-    dateSet.innerHTML=`${weekDay[date.getDay()]}, ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} pm`
-    }, 1000);
-       
-    
-    
-    console.log();
-    console.log();
-        console.log();
-
+setInterval(()=>{
+    weather_API();
+    get_date();
+},1000)
 }
-get_date()
 
+main_page();
 
+function dailyGoals() {
+    const input = document.getElementById("goal-input");
+    const addBtn = document.getElementById("add-goal");
+    const goalList = document.querySelector(".goal-list");
 
+    let goals = JSON.parse(localStorage.getItem("goals")) || [];
+
+    function renderGoals() {
+        goalList.innerHTML = "";
+
+        goals.forEach((goal, index) => {
+            goalList.innerHTML += `
+                <div class="goal-item">
+                    <input class="chkbox" type="checkbox" ${goal.done ? "checked" : ""} data-id="${index}">
+                    <p class="${goal.done ? "done" : ""}">${goal.text}</p>
+                    <button data-del="${index}">❌</button>
+                </div>
+            `;
+        });
+
+        document.querySelectorAll(".goal-item input").forEach(cb => {
+            cb.addEventListener("change", function () {
+                goals[this.dataset.id].done = this.checked;
+                localStorage.setItem("goals", JSON.stringify(goals));
+                renderGoals();
+            });
+        });
+
+        document.querySelectorAll(".goal-item button").forEach(btn => {
+            btn.addEventListener("click", function () {
+                goals.splice(this.dataset.del, 1);
+                localStorage.setItem("goals", JSON.stringify(goals));
+                renderGoals();
+            });
+        });
+    }
+
+    addBtn.addEventListener("click", () => {
+        if (input.value.trim() === "") return;
+        goals.push({ text: input.value, done: false });
+        localStorage.setItem("goals", JSON.stringify(goals));
+        input.value = "";
+        renderGoals();
+    });
+
+    renderGoals();
+}
+
+dailyGoals();
 
 
 
