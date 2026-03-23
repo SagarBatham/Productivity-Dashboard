@@ -156,7 +156,7 @@ body {
 .elem {
     background-color: var(--ter2);
     width: 290px;
-    height: 318px;
+    height: 340px;
     border-radius: 10px;
     position: relative;
     overflow: hidden;
