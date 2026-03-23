@@ -258,7 +258,7 @@ function main_page() {
     var other = document.querySelectorAll(".header2 h3")
 
 
-    var apiKey = "8a94a1ac092145a290f133905262203";
+    var apiKey = "";
     var city = "Noida"
     async function weather_API() {
         var response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`)
