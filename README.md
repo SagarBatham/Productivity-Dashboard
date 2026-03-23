@@ -37,11 +37,17 @@ A modern and interactive **Productivity Dashboard** built using **HTML, CSS, and
 
 ## 📂 Project Structure
 📁 project-folder
+
 │── index.html
+
 │── styles.css
+
 │── script.js
+
 │── /img
+
 │── /icons
+
 
 
 
