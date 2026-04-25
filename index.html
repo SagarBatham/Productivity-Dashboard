@@ -4,153 +4,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Productivity Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="shortcut icon" href="/icons/main_icon.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <main class="main">
+
         <div class="dash">
-            <h1>Productivity-Dashboard</h1>
-            <i class="ri-sun-line"></i>
+            <div class="dash-left">
+                <span class="dash-icon"><i class="ri-dashboard-3-line"></i></span>
+                <h1>Productivity Dashboard</h1>
+            </div>
+            <div class="dash-right">
+                <span class="theme-label">Theme</span>
+                <button class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="ri-sun-line"></i>
+                </button>
+            </div>
         </div>
+
         <nav class="navi">
+            <div class="navi-overlay"></div>
             <div class="navi-content">
                 <div class="header1">
-                    <h2>2 August 2021</h2>
-                    <h1>Saturday, 1:00 pm</h1>
-                    <h4>Etawah(U.P.)</h4>
+                    <p class="date-sub" id="date-month">2 August 2021</p>
+                    <h2 class="date-main" id="date-time">Saturday, 1:00 PM</h2>
+                    <p class="date-loc"><i class="ri-map-pin-2-line"></i> <span>Noida, U.P.</span></p>
                 </div>
                 <div class="header2">
-                    <h2>20 °C</h2>
-                    <h4>Light Rain</h4>
-                    <h3>HeatIndex</h3>
-                    <h3>Humidity</h3>
-                    <h3>Wind: 10 km/hr</h3>
+                    <div class="weather-main">
+                        <span class="weather-temp" id="temp">-- °C</span>
+                        <span class="weather-cond" id="cond">Loading...</span>
+                    </div>
+                    <div class="weather-meta">
+                        <span class="weather-chip" id="w0"><i class="ri-temp-hot-line"></i> HeatIndex: --</span>
+                        <span class="weather-chip" id="w1"><i class="ri-drop-line"></i> Humidity: --</span>
+                        <span class="weather-chip" id="w2"><i class="ri-windy-line"></i> Wind: -- km/hr</span>
+                    </div>
                 </div>
             </div>
         </nav>
 
         <section id="allelem">
-
             <section class="todo elem" id="0">
-                <img src="/img/todo.jpg" alt="">
-                <h2>To-Do List</h2>
+                <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=600&auto=format&fit=crop" alt="To-Do List">
+                <div class="card-overlay"></div>
+                <div class="card-label">
+                    <i class="ri-checkbox-circle-line"></i>
+                    <h2>To-Do List</h2>
+                </div>
             </section>
 
-            <section class="daily elem " id="1">
-                <img src="https://images.unsplash.com/photo-1691318110143-ebd82d266740?q=80&w=636&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="">
-                <h2>Daily Planner</h2>
+            <section class="daily elem" id="1">
+                <img src="https://images.unsplash.com/photo-1691318110143-ebd82d266740?q=80&w=636&auto=format&fit=crop" alt="Daily Planner">
+                <div class="card-overlay"></div>
+                <div class="card-label">
+                    <i class="ri-calendar-check-line"></i>
+                    <h2>Daily Planner</h2>
+                </div>
             </section>
 
             <section class="moti elem" id="2">
-                <img src="https://images.unsplash.com/photo-1770110000218-e9376e581258?w=600&auto=format&fit=crop&q=60"
-                    alt="">
-                <h2>MotiVation</h2>
+                <img src="https://images.unsplash.com/photo-1770110000218-e9376e581258?w=600&auto=format&fit=crop&q=60" alt="Motivation">
+                <div class="card-overlay"></div>
+                <div class="card-label">
+                    <i class="ri-fire-line"></i>
+                    <h2>Motivation</h2>
+                </div>
             </section>
 
             <section class="pomo elem" id="3">
-                <img src="https://images.unsplash.com/photo-1647184349954-f2aea3606d64?w=600&auto=format&fit=crop&q=60"
-                    alt="">
-                <h2>Pomodoro</h2>
+                <img src="https://images.unsplash.com/photo-1647184349954-f2aea3606d64?w=600&auto=format&fit=crop&q=60" alt="Pomodoro">
+                <div class="card-overlay"></div>
+                <div class="card-label">
+                    <i class="ri-timer-line"></i>
+                    <h2>Pomodoro</h2>
+                </div>
             </section>
 
             <section class="goal elem" id="4">
-                <img src="https://images.unsplash.com/photo-1688325599598-401400d2cd88?w=600&auto=format&fit=crop&q=60"
-                    alt="">
-                <h2>Goals</h2>
+                <img src="https://images.unsplash.com/photo-1688325599598-401400d2cd88?w=600&auto=format&fit=crop&q=60" alt="Goals">
+                <div class="card-overlay"></div>
+                <div class="card-label">
+                    <i class="ri-medal-line"></i>
+                    <h2>Goals</h2>
+                </div>
             </section>
-
         </section>
 
         <section class="fullelem todo-page">
-            <h1 class="txt">Personlized Task List</h1>
+            <div class="page-header">
+                <h1 class="txt"><i class="ri-checkbox-circle-line"></i> Task List</h1>
+                <button class="clse" aria-label="Close"><i class="ri-close-line"></i></button>
+            </div>
             <div class="taskcontainer">
                 <div class="taskadd">
+                    <h3 class="panel-title">Add New Task</h3>
                     <form>
-                        <input type="text" placeholder="Enter Task">
-                        <textarea name="txtarea" id="txt0" placeholder="Enter Description of Your Task"></textarea>
+                        <input type="text" placeholder="Task name…">
+                        <textarea name="txtarea" id="txt0" placeholder="Description (optional)…"></textarea>
                         <div id="tick">
                             <input type="checkbox" id="check">
-                            <label for="check">Mark as Important</label>
+                            <label for="check"><i class="ri-flag-2-line"></i> Mark as Important</label>
                         </div>
-                        <button>
-                            <h2>Submit</h2>
+                        <button type="submit" class="submit-btn">
+                            <i class="ri-add-line"></i> Add Task
                         </button>
                     </form>
                 </div>
                 <div class="tasklist">
+                    <h3 class="panel-title list-title">Your Tasks</h3>
+                    <div class="tasklist-inner"></div>
                 </div>
             </div>
-            <button class="clse">
-                <h3>Close</h3>
-            </button>
         </section>
 
         <section class="fullelem dailyplanner-page">
-            <h1>Plan Your Day to be More Productive</h1>
-            <div class="day-planner">
+            <div class="page-header">
+                <h1><i class="ri-calendar-check-line"></i> Daily Planner</h1>
+                <button class="clse" aria-label="Close"><i class="ri-close-line"></i></button>
             </div>
-            <button class="clse">
-                <h3>Close</h3>
-            </button>
+            <p class="page-sub">Plan your hours. Own your day.</p>
+            <div class="day-planner"></div>
         </section>
 
         <section class="fullelem motivation-page">
-            <h1>Today MotiVation Quote</h1>
+            <div class="page-header">
+                <h1><i class="ri-fire-line"></i> Daily Motivation</h1>
+                <button class="clse" aria-label="Close"><i class="ri-close-line"></i></button>
+            </div>
             <div class="mot-Contain">
-                <div class="motiv">
-
-                </div>
+                <div class="motiv"></div>
             </div>
-            </div>
-
-
-            <button class="clse">
-                <h3>Close</h3>
-            </button>
         </section>
 
         <section class="fullelem pomodoro-page">
-            <h1>Pomodoro Timer-Study Time</h1>
-            <div class="timer">
-                <h3 class="session">Work Session</h3>
-                <h3 class="time">22:30</h3>
-                <div class="buttonTimer">
-                    <button class="start-button">Start</button>
-                    <button class="pause-button">Pause</button>
-                    <button class="reset-button">Reset</button>
+            <div class="page-header">
+                <h1><i class="ri-timer-line"></i> Pomodoro Timer</h1>
+                <button class="clse" aria-label="Close"><i class="ri-close-line"></i></button>
+            </div>
+            <div class="timer-wrapper">
+                <div class="timer">
+                    <h3 class="session">Work Session</h3>
+                    <div class="time-ring">
+                        <h3 class="time">25:00</h3>
+                    </div>
+                    <div class="buttonTimer">
+                        <button class="start-button"><i class="ri-play-fill"></i> Start</button>
+                        <button class="pause-button"><i class="ri-pause-fill"></i> Pause</button>
+                        <button class="reset-button"><i class="ri-refresh-line"></i> Reset</button>
+                    </div>
                 </div>
             </div>
-
-
-            <button class="clse">
-                <h3>Close</h3>
-            </button>
         </section>
 
         <section class="fullelem goals-page">
-            <h1>Daily Goals</h1>
-
+            <div class="page-header">
+                <h1><i class="ri-medal-line"></i> Daily Goals</h1>
+                <button class="clse" aria-label="Close"><i class="ri-close-line"></i></button>
+            </div>
             <div class="goal-container">
-                <input type="text" id="goal-input" placeholder="Enter your daily goal">
-                <button id="add-goal">Add Goal</button>
-
+                <div class="goal-input-row">
+                    <input type="text" id="goal-input" placeholder="Enter your goal for today…">
+                    <button id="add-goal"><i class="ri-add-line"></i> Add Goal</button>
+                </div>
                 <div class="goal-list"></div>
             </div>
-
-            <button class="clse">
-                <h3>Close</h3>
-            </button>
         </section>
+
     </main>
+
     <span class="marked">
-        <h6>----DEVELOPED BY----</h6>
-        <h6>SAGAR BATHAM</h6>
+        <i class="ri-code-s-slash-line"></i>
+        <span>Sagar Batham</span>
     </span>
+
     <script src="script.js"></script>
 </body>
 
