@@ -67,16 +67,7 @@ A modern and interactive **Productivity Dashboard** built using **HTML, CSS, and
 - Dark Mode → High contrast with **pure white text**
 - Toggle using the icon on top-right
 
----
 
-## 📌 Future Improvements
-
-- User authentication
-- Cloud sync (Firebase)
-- Drag & drop tasks
-- Mobile app version
-
----
 
 ## 👨‍💻 Author
 
