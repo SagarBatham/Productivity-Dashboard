@@ -223,11 +223,13 @@ function main_page() {
     var city = "Noida"
     async function weather_API() {
         try {
-            var response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`);
+            var response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`);
             var data     = await response.json();
+            console.log(data.current);
+            
             temp.innerHTML = `${data.current.temp_c} °C`;
             Cond.innerHTML = data.current.condition.text;
-            w0.innerHTML   = `<i class='ri-temp-hot-line'></i> HeatIndex: ${data.current.heatindex_c ?? '--'}`;
+            w0.innerHTML   = `<i class='ri-temp-hot-line'></i> HeatIndex: ${data.current.heatindex_c}`;
             w1.innerHTML   = `<i class='ri-drop-line'></i> Humidity: ${data.current.humidity}%`;
             w2.innerHTML   = `<i class='ri-windy-line'></i> Wind: ${data.current.wind_kph} km/hr`;
         } catch (e) {
